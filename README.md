@@ -21,7 +21,7 @@ This module sets up Puppet Master for autosigning certificate requests.
 
 The module makes sure the following two files exist in /usr/local/bin on the target node:
 
-* autosign: This file expects a certname as input. It also expects a file named after the certname to be found in /opt/puppetlabs/autosign. This file should contain a custom_attributes definition for a one time passcode. autosign then checks if a crl containing a matching passcode exists in etc/puppetlabs/puppet/ssl/ca/requests/. If yes, it exits with 0 and the crl is signed. If no, it exits with 1 and the crl gets rejected. In either case the file containing the one time passcode is removed.
+* autosign: This file expects a certname as input. It also expects a file named after the certname to be found in /opt/puppetlabs/autosign. This file should contain a custom_attributes definition for a one time passcode. The script then checks if a crl containing a matching passcode exists in etc/puppetlabs/puppet/ssl/ca/requests/. If yes, it exits with 0 and the crl is signed. If no, it exits with 1 and the crl gets rejected. In either case the file containing the one time passcode is removed.
 
 * genpasscode: This file generates the custom_attributes definition and prints it to stdout along with instructions of where to insert it.
 

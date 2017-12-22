@@ -53,6 +53,6 @@ Then on the agent create the csr_attributes file and insert the output of the ge
 
 Any form of contribution is welcomed.
 
-## Release Notes/Contributors/Etc. **Optional**
+## Release Notes
 
 0.1.0: First release

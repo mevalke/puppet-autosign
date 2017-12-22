@@ -26,56 +26,56 @@ class puppet_autosign {
       if [ "$CUSTOM_ATTR" == "$(cat $AUTOSIGN_FILE)" ]; then
         rm $AUTOSIGN_FILE
         exit 0
-     else
-       rm $AUTOSIGN_FILE
-       exit 1
-     fi
-     | END
+      else
+        rm $AUTOSIGN_FILE
+        exit 1
+      fi
+      | END
 
-    $genpasscode_content = @(END)
-    #!/bin/bash
+      $genpasscode_content = @(END)
+      #!/bin/bash
 
-    CERTNAME=$1
-    AUTOSIGN_FOLDER=/opt/puppetlabs/autosign
-    AUTOSIGN_FILE=$AUTOSIGN_FOLDER/$CERTNAME
-    GEN_PASS=$(tr -cd 'a-f0-9' < /dev/urandom | head -c 32)
+      CERTNAME=$1
+      AUTOSIGN_FOLDER=/opt/puppetlabs/autosign
+      AUTOSIGN_FILE=$AUTOSIGN_FOLDER/$CERTNAME
+      GEN_PASS=$(tr -cd 'a-f0-9' < /dev/urandom | head -c 32)
 
-    if [ ! -e $AUTOSIGN_FOLDER ]; then
-      mkdir $AUTOSIGN_FOLDER
-    fi
+      if [ ! -e $AUTOSIGN_FOLDER ]; then
+        mkdir $AUTOSIGN_FOLDER
+      fi
 
-    echo $GEN_PASS >  $AUTOSIGN_FILE
+      echo $GEN_PASS >  $AUTOSIGN_FILE
 
-    chown -R puppet:puppet $AUTOSIGN_FOLDER
+      chown -R puppet:puppet $AUTOSIGN_FOLDER
 
-    cat <<EOF
-    Insert this in /etc/puppetlabs/puppet/csr_attributes.yaml:
+      cat <<EOF
+      Insert this in /etc/puppetlabs/puppet/csr_attributes.yaml:
 
-    custom_attributes:
-      1.2.840.113549.1.9.7: $GEN_PASS
-    EOF
+      custom_attributes:
+        1.2.840.113549.1.9.7: $GEN_PASS
+      EOF
 
-    exit 0
-    | END
+      exit 0
+      | END
 
-    file {'/usr/local/bin/autosign':
-      ensure  => file,
-      mode    => '755',
-      content => inline_epp($autosign_content),
-    }
+      file {'/usr/local/bin/autosign':
+        ensure  => file,
+        mode    => '755',
+        content => inline_epp($autosign_content),
+      }
 
-    file {'/usr/local/bin/genpasscode':
-      ensure  => file,
-      mode    => '755',
-      content => inline_epp($genpasscode_content),
-    }
+      file {'/usr/local/bin/genpasscode':
+        ensure  => file,
+        mode    => '755',
+        content => inline_epp($genpasscode_content),
+      }  
       
       puppetconf::master { 'autosign':
         value => '/usr/local/bin/autosign',
       }
     }      
-   default: {
-     notify{"Non supported operating system detected: ${::osfamily}":}
-   }
+    default: {
+      notify{"Non supported operating system detected: ${::osfamily}":}
+    }
   }
 }

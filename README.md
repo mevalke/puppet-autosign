@@ -44,7 +44,11 @@ include puppet_autosign
 On Puppet Server generate a passcode.
 
 ```
-/usr/local/bin/genpasscode
+/usr/local/bin/genpasscode server.example.com
+Insert this in /etc/puppetlabs/puppet/csr_attributes.yaml:
+
+custom_attributes:
+  1.2.840.113549.1.9.7: 9caa0f7a766994e5c15830817f151b24
 ```
 
 Then on the agent create the csr_attributes file and insert the output of the genpasscode command.

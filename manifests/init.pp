@@ -14,6 +14,8 @@
 class puppet_autosign {
   case $kernel {
     'Linux': {
+      $conf_path = '/etc/puppetlabs/puppet/puppet.conf'
+
       $autosign_content = @(END)
       #!/bin/bash
 
@@ -68,12 +70,13 @@ class puppet_autosign {
         ensure  => file,
         mode    => '755',
         content => inline_epp($genpasscode_content),
-      }  
-      
-      puppetconf::master { 'autosign':
-        value => '/usr/local/bin/autosign',
       }
-    }      
+
+      puppetconf::master { 'autosign':
+        conf_path => $conf_path,
+        value     => '/usr/local/bin/autosign',
+      }
+    }
     default: {
       notify{"Non supported operating system detected: ${::osfamily}":}
     }

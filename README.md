@@ -35,13 +35,12 @@ puppet module install cjtoolseram-puppetconf --version 0.2.7
 
 ## Usage
 
-Include the module.
+On Puppet Server:
 
-```
-include puppet_autosign
-```
-
-On Puppet Server generate a passcode.
+1. Include the module.
+2. Execute a Puppet run.
+3. Restart Puppetserver service.
+4. Generate a passcode.
 
 ```
 /usr/local/bin/genpasscode server.example.com
@@ -51,7 +50,7 @@ custom_attributes:
   1.2.840.113549.1.9.7: 9caa0f7a766994e5c15830817f151b24
 ```
 
-Then on the agent create the csr_attributes file and insert the output of the genpasscode command.
+On the agent create the csr_attributes file with the output of the genpasscode command as content.
 
 ## Development
 

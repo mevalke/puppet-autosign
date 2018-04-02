@@ -1,12 +1,12 @@
 {
-  "name": "mevalke-puppet_autosign",
+  "name": "mevalke-puppet-autosign",
   "version": "0.1.0",
   "author": "mevalke",
   "summary": "Puppet module for setting up autosigning of certificate requests.",
   "license": "Apache-2.0",
-  "source": "https://github.com/mevalke/puppet_autosign",
-  "project_page": "https://github.com/mevalke/puppet_autosign",
-  "issues_url": "https://github.com/mevalke/puppet_autosign/issues",
+  "source": "https://github.com/mevalke/puppet-autosign",
+  "project_page": "https://github.com/mevalke/puppet-autosign",
+  "issues_url": "https://github.com/mevalke/puppet-autosign/issues",
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
   ],

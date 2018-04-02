@@ -1,12 +1,12 @@
-# puppet_autosign
+# puppet-autosign
 
 #### Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with puppet_autosign](#setup)
-    * [What puppet_autosign affects](#what-puppet_autosign-affects)
+1. [Setup - The basics of getting started with puppet-autosign](#setup)
+    * [What puppet-autosign affects](#what-puppet-autosign-affects)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with puppet_autosign](#beginning-with-puppet_autosign)
+    * [Beginning with puppet-autosign](#beginning-with-puppet-autosign)
 1. [Usage - Configuration options and additional functionality](#usage)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
@@ -17,7 +17,7 @@ This module sets up Puppet Master for autosigning certificate requests.
 
 ## Setup
 
-### What puppet_autosign affects 
+### What puppet-autosign affects 
 
 The module makes sure the following two files exist in /usr/local/bin on the target node:
 

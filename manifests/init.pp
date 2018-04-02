@@ -11,7 +11,7 @@
 #
 # Copyright 2017 Miikka Valkeapää, unless otherwise noted.
 #
-class puppet_autosign {
+class autosign {
   case $kernel {
     'Linux': {
       $conf_path = '/etc/puppetlabs/puppet/puppet.conf'
